@@ -49,6 +49,7 @@ public class SentinelConnectionManager extends MasterSlaveConnectionManager {
         init(config);
 
         final MasterSlaveServersConfig c = new MasterSlaveServersConfig();
+        c.setPassword(cfg.getPassword());
         for (URI addr : cfg.getSentinelAddresses()) {
             RedisClient client = new RedisClient(group, addr.getHost(), addr.getPort());
             RedisAsyncConnection<String, String> connection = client.connectAsync();

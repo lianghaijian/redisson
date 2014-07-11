@@ -26,23 +26,27 @@ public class SentinelServersConfig {
 
     private String masterName;
 
+    private String password;
+
     public SentinelServersConfig() {
     }
 
     SentinelServersConfig(SentinelServersConfig config) {
         setSentinelAddresses(config.getSentinelAddresses());
         setMasterName(config.getMasterName());
+        setPassword(config.getPassword());
     }
 
     public SentinelServersConfig setMasterName(String masterName) {
         this.masterName = masterName;
         return this;
     }
+
     public String getMasterName() {
         return masterName;
     }
 
-    public SentinelServersConfig addSentinelAddress(String ... addresses) {
+    public SentinelServersConfig addSentinelAddress(String... addresses) {
         for (String address : addresses) {
             try {
                 sentinelAddresses.add(new URI("//" + address));
@@ -52,11 +56,22 @@ public class SentinelServersConfig {
         }
         return this;
     }
+
     public List<URI> getSentinelAddresses() {
         return sentinelAddresses;
     }
+
     void setSentinelAddresses(List<URI> sentinelAddresses) {
         this.sentinelAddresses = sentinelAddresses;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public SentinelServersConfig setPassword(String password) {
+        this.password = password;
+        return this;
     }
 
 }
